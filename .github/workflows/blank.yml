@@ -43,11 +43,14 @@ jobs:
 
     - name: Build .deb Package
       run: |
-        
+        dpkg-deb --build pkg ./instalador-de-fontes.deb
+               
+        ls -lh ./instalador-de-fontes.deb
+
     - name: Upload to Continuous Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+
         bash upload.sh ./instalador-de-fontes.deb
